@@ -30,28 +30,28 @@ Clear-Host
     -Excel $Excel
 
 # Create a new HttpListener object
-#$Listener = New-Object System.Net.HttpListener
-#$Listener.Prefixes.Add($Prefix)
-#$Listener.Start()
-#Write-Host "Listening on $Prefix"
+$Listener = New-Object System.Net.HttpListener
+$Listener.Prefixes.Add($Prefix)
+$Listener.Start()
+Write-Host "Listening on $Prefix"
 
-#try {
-#    while ($Listener.IsListening) {
-#        & "$ScriptRoot\inc\server\handler.ps1" `
-#            -ScriptRoot $ScriptRoot `
-#            -DataPath $DataPath `
-#            -ReportPath $ReportPath `
-#            -TmpData $TmpData `
-#            -Listener $Listener `
-#            -Excel $Excel
-#    }
-#} catch {
-#    Write-Host "Error: $_"
-#    $Listener.Stop()
-#} finally {
-#    Write-Host "Listener stopped."
-#    $Listener.Stop()
-#}
+try {
+    while ($Listener.IsListening) {
+        & "$ScriptRoot\inc\server\handler.ps1" `
+            -ScriptRoot $ScriptRoot `
+            -DataPath $DataPath `
+            -ReportPath $ReportPath `
+            -TmpData $TmpData `
+            -Listener $Listener `
+            -Excel $Excel
+    }
+} catch {
+    Write-Host "Error: $_"
+    $Listener.Stop()
+} finally {
+    Write-Host "Listener stopped."
+    $Listener.Stop()
+}
 
 $Excel.DisplayAlerts = $true
 $Excel.Quit() | Out-Null
