@@ -105,7 +105,7 @@ if ($null -ne $WorkBook) {
                     $DataList = @(
                         [pscustomobject]@{
                             Field = $ATD
-                            Value = $item.eta
+                            Value = $item.etd
                         },
                         [pscustomobject]@{
                             Field = $CONT
