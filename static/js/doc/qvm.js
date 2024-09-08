@@ -1,0 +1,44 @@
+import { matchFirst, getContNumber, strToDate } from '../common.js';
+import {
+    convertTable,
+    getColumnByName
+} from '../table.js'
+
+export function bill_number(content) {
+    return matchFirst(
+        content,
+        /waybill.*?number:\s*([^\n]+)/i
+    );
+}
+
+export function cont_number(content) {
+    const str = matchFirst(
+        content,
+        /cont\.\'\s*\/\s*seal\s+no\.:\s*([^\n]+)/i
+    );
+    return getContNumber(str);
+}
+
+function localTable(content) {
+    return convertTable(
+        content,
+        /\(\s*\d+\s*\)\s*carrier/i,
+        /\(\s*\d+\s*\)\s*marks/i,
+    );
+}
+
+export function vessel(content) {
+    const table = localTable(content);
+    return getColumnByName(table, /\(\s*\d+\s*\)\s*carrier/i).filter(item => item.trim() != '')[1];
+}
+
+export function etd(content) {
+    const table = localTable(content);
+    return strToDate(getColumnByName(table, /\(\s*\d+\s*\)\s*etd/i).filter(item => item.trim() != '')[1]);
+}
+
+export {
+    invoice_number,
+    eta,
+    total 
+} from './all.js';

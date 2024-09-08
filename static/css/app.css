@@ -1,0 +1,161 @@
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    background-position: 50% 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.btn {
+    white-space: break-word;
+}
+
+.progress, .progress-stacked {
+    --bs-progress-height: .5rem;
+}
+
+.progress {
+    position: absolute;
+    bottom: .5rem;
+    left: .5rem;
+    right: .5rem;
+}
+
+.table thead {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.table th {
+    color: var(--bs-light);
+    background: var(--bs-danger);
+    white-space: nowrap;
+}
+
+.table td {
+    white-space: nowrap;
+}
+
+.doc {
+    overflow: hidden;
+}
+
+.input-group-text {
+    font-size: .6em;
+    width: 5.5rem;
+}
+
+.form-control {
+    resize: none;
+}
+
+.form-select {
+    --bs-form-select-bg-img: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+}
+
+.textarea {
+    counter-reset: section-counter;
+}
+
+.textarea > * {
+    overflow: visible;
+    width: 230%;
+    position: relative;
+}
+
+.textarea > *::before {
+    counter-increment: section-counter;
+    content: counter(section-counter);
+    width: 3.5em;
+    background: #fff;
+    border-right: 1px solid #999;
+    margin-right: 1rem;
+    padding-left: .25rem;
+    display: inline-block;
+    position: sticky;
+    left: 0;
+}
+
+.textarea > *:nth-child(2n+1),
+.textarea > *:nth-child(2n+1)::before {
+    background: #efefef;
+}
+
+.textarea > *:hover,
+.textarea > *:hover::before {
+    background: #15734755;
+}
+
+.textarea > *:focus,
+.textarea > *:focus::before {
+    background: #6610f255;
+}
+
+.file-nav {
+    --size: 2rem;
+}
+
+.file-nav,
+.file-nav:hover {
+    border: var(--bs-border-width) solid var(--bs-border-color);
+}
+
+.btn-apply img {
+    opacity: .8;
+}
+
+.btn-stop,
+.btn-apply {
+    width: 44px;
+}
+
+.btn-stop,
+.btn-stop:hover,
+.btn-apply,
+.btn-apply:hover {
+    border: var(--bs-border-width) solid var(--bs-border-color);
+}
+
+.carousel-control-next-icon, .carousel-control-prev-icon {
+    width: calc(var(--size) * 2 / 5);
+    height: calc(var(--size) * 2 / 5);
+}
+
+div:where(.swal2-icon).swal2-warning {
+    border-color: #ff0000;
+    color: #ff0000;
+}
+
+.swal2-actions button {
+    min-width: 12rem;
+}
+
+/* Target the scrollbar */
+::-webkit-scrollbar {
+    width: 8px; /* Width of the scrollbar */
+    height: 8px; /* Height of the scrollbar */
+}
+
+/* Target the scrollbar track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Background color of the scrollbar track */
+    border-radius: 10px; /* Optional: to make the track corners rounded */
+}
+
+/* Target the scrollbar thumb (the draggable part) */
+::-webkit-scrollbar-thumb {
+    background: #888; /* Color of the scrollbar thumb */
+    border-radius: 10px; /* Optional: to make the thumb corners rounded */
+}
+
+/* Hover effect on the scrollbar thumb */
+::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Color of the scrollbar thumb on hover */
+}
+
