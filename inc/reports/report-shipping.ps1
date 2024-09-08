@@ -101,6 +101,15 @@ if ($null -ne $WorkBook) {
                     )
                 }
                 "doc" {
+                    $SH = switch ($item.bill_number.Substring(0, 4).ToUpper()) {
+                        "EGLV" { "EVERGREEN" }
+                        "MEDU" { "MSC" }
+                        "ONEY" { "ONE" }
+                        default { $null }
+                    }
+                    if ($SH -ne $WorkSheet.Name) {
+                        continue
+                    }
                     $Str = $item.bill_number
                     $DataList = @(
                         [pscustomobject]@{
