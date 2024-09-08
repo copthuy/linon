@@ -60,6 +60,6 @@ if ($null -ne $WorkBook) {
 
     Write-Output "db"
 }
-Write-Host ""
-Write-Host ""
-Write-Host ""
+Write-Host
+Write-Host
+Write-Host

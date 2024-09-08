@@ -163,6 +163,6 @@ if ($null -ne $WorkBook) {
     Write-Output 'shipping'
 }
 
-Write-Host ""
-Write-Host ""
-Write-Host ""
+Write-Host
+Write-Host
+Write-Host

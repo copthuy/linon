@@ -22,7 +22,6 @@ $FileExtension = [System.IO.Path]::GetExtension($FilePath).ToLower()
 if (-not (Test-Path -Path $FilePDF)) {
     $xlsFile = & "$ScriptRoot\inc\get-file-ext.ps1" -FilePath $FilePath -ext "xls"
     $xlsxFile = & "$ScriptRoot\inc\get-file-ext.ps1" -FilePath $FilePath -ext "xlsx"
-    $tempFilePath = & "$ScriptRoot\inc\get-file-ext.ps1" -FilePath $FilePath -ext "tmp"
     $excelFile = if (Test-Path -Path $xlsFile) { $xlsFile } elseif (Test-Path -Path $xlsxFile) { $xlsxFile }
 
     if ($excelFile) {
@@ -32,12 +31,15 @@ if (-not (Test-Path -Path $FilePDF)) {
         
         $Workbook = $Excel.Workbooks.Open($excelFile)
         # Fix scaling to avoid drop content
-        # $margin = $Excel.Application.InchesToPoints(0.25)
+        $margin = $Excel.Application.InchesToPoints(0.25)
         $paperWidth = $Excel.Application.InchesToPoints(8.27)    
-        #Write-Host "printableWidth: "$printableWidth
         
         foreach ($sheet in $Workbook.Sheets) {
-            $printableWidth = $paperWidth - $sheet.PageSetup.LeftMargin - $sheet.PageSetup.RightMargin;
+            Write-Host $sheet.Name
+            $sheet.PageSetup.PaperSize = 9
+            $sheet.PageSetup.LeftMargin = 0
+            $sheet.PageSetup.RightMargin = 0
+            $printableWidth = $paperWidth - 2 * $margin;
 
             # Get the current print area
             $printArea = $sheet.PageSetup.PrintArea
@@ -56,19 +58,20 @@ if (-not (Test-Path -Path $FilePDF)) {
             #Write-Host "printAreaWidth: "$printAreaWidth
 
             $zoomScale = [math]::min(100, ($printableWidth / $printAreaWidth) * 100)
-            $zoomScale = [math]::floor($zoomScale)
+            $zoomScale = [math]::floor($zoomScale) - 5
             
             # Ensure zoomScale is not negative or out of valid range
             if ($zoomScale -lt 10) {
                 $zoomScale = 10
             }
-            #Write-Host "zoomScale: "$zoomScale
             $sheet.PageSetup.Zoom = [int]$zoomScale
+            #Write-Host
+            #Write-Host
+            #Write-Host
         }            
         $Workbook.ExportAsFixedFormat([Microsoft.Office.Interop.Excel.XlFixedFormatType]::xlTypePDF, $FilePDF)
         $Workbook.Close()
         & "$xpdf\pdftotext.exe" -q -table $FilePDF $fileTxt
-        Remove-Item -Path $tempFilePath -Force
     }
 }
 

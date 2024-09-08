@@ -108,7 +108,7 @@ if ($null -ne $WorkBook) {
     Write-Output 'ln'
 }
 
-Write-Host ""
-Write-Host ""
-Write-Host ""
+Write-Host
+Write-Host
+Write-Host
 

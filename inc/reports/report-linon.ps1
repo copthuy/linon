@@ -134,6 +134,6 @@ if ($null -ne $WorkBook) {
 
     Write-Output "linon"
 }
-Write-Host ""
-Write-Host ""
-Write-Host ""
+Write-Host
+Write-Host
+Write-Host

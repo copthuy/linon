@@ -101,6 +101,6 @@ if ($null -ne $WorkBook) {
     Write-Output 'di'
 }
 
-Write-Host ""
-Write-Host ""
-Write-Host ""
+Write-Host
+Write-Host
+Write-Host
