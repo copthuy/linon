@@ -12,7 +12,7 @@ export function bill_number(content) {
     return matchFirst(
         content,
         /bill\s+no\.\s*:\s*([^\n]+)/i
-    );
+    ).replace(/\s+/, '');
 }
 
 export function vessel(content) {

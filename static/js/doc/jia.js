@@ -9,7 +9,7 @@ export function bill_number(content) {
     return matchFirst(
         content,
         /mbl\s*:\s*(\w+)/i 
-    );
+    ).replace(/\s+/, '');
 }
 
 export function invoice_number(content) {

@@ -12,7 +12,8 @@ export function bill_number(content) {
     ).
     replace(/\s*\w{2,}([\/-]\w{2,})+\s*/i, '').
     replace(/\s*invoice.*/i, '').
-    replace(/\s*tcl.*/i, '');
+    replace(/\s*tcl.*/i, '').
+    replace(/\s+/i, '');
 }
 
 export function invoice_number(content, regex = /\(\s*\d+\s*\)\s*no\s*\&\s*date\s*/i) {

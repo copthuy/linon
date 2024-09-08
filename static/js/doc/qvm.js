@@ -8,7 +8,7 @@ export function bill_number(content) {
     return matchFirst(
         content,
         /waybill.*?number:\s*([^\n]+)/i
-    );
+    ).replace(/\s+/, '');
 }
 
 function localTable(content) {

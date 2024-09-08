@@ -5,7 +5,7 @@ export function bill_number(content) {
     return matchFirst(
         content,
         /bill\s+of\s+lading\s+\#\s*:\s*(\w+)/i
-    );
+    ).replace(/\s+/, '');
 }
 
 export function total(content) {

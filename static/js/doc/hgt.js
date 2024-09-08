@@ -4,7 +4,7 @@ export function bill_number(content) {
     return matchFirst(
         content,
         /sea\s+waybill\s+\#\s*:\s*(\w+)/i
-    );
+    ).replace(/\s+/, '');
 }
 
 export { 

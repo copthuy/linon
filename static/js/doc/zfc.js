@@ -4,7 +4,7 @@ export function bill_number(content) {
     return matchFirst(
         content,
         /waybill\s+or\s+reference\s+number\s*:\s*([^\n]+)/i
-    );
+    ).replace(/\s+/, '');
 }
 
 export function etd(content) {

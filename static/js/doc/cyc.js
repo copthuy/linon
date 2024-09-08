@@ -8,7 +8,7 @@ export function bill_number(content) {
     return matchFirst(
         content,
         /bill\s+no\s*\.\s*(\w+)/i
-    );
+    ).replace(/\s+/, '');
 }
 
 export function etd(content) {
