@@ -1,7 +1,6 @@
 import { 
     fixstr,
     matchFirst,
-    getContNumber,
     isValidDateString,
     getLines
 } from '../common.js';
@@ -68,42 +67,8 @@ export function vessel(content, regex = /\(\s*\d+\s*\)\s*carrier/i) {
     return '';
 }
 
-export function cont_number(
-    content, 
-    start_regex = /cont\.\'?\s*\/\s*seal\s+no\.\s*:?\s*/i, 
-    end_regex = /also\s+notify|notify\s+party|\(\s*\d+\s*\)\s*amount/i
-) {
-    const result = new Set();
-    const lines = content.replace(/\r/g, "\n").split("\n");
-    let index = -1;
-    for (const row of lines) {
-        if (index < 0) {
-            const match = row.match(start_regex);
-            if (match) {
-                index = match.index;
-            }
-        }
-        if (index > -1 && end_regex.test(row)) {
-            break;
-        }
-        if (index > -1) {
-            const raw = row.substr(index).trim();
-            if (raw !== '') {
-                const str = fixstr(
-                    raw.
-                    replace(start_regex, '').
-                    replace(/\s*container\s+\d+\s+no\s*\/\s*seal\s+\d+\s+no\s*/i, '').
-                    replace(/\s*country\s+of\s+origin.+/gi, '').
-                    replace(/\s*\(.*?\)\s*/g, '').
-                    split(/\s{2,}/)[0]
-                );
-                const cont = getContNumber(str);
-                if (cont !== '') {
-                    result.add(getContNumber(str));
-                }
-            }
-        }
-    }
+export function cont_number(content) {
+    const result = new Set([...content.matchAll(/\b[a-z]{4}\d{7}\b/gi)].map(item => item[0].toUpperCase()));
     return [...result];
 }
 

@@ -1,16 +1,7 @@
 import { 
     matchFirst,
-    getContNumber,
     strToDate
 } from '../common.js';
-
-export function cont_number(content) {
-    const str = matchFirst(
-        content,
-        /cont.\s*\/\s*seal\s+no.:\s*(\w+\s*\/\s*\w+)/i
-    );
-    return getContNumber(str);
-}
 
 export function etd(content) {
     return strToDate(matchFirst(
@@ -30,5 +21,6 @@ export {
     invoice_number,
     bill_number,
     vessel,
+    cont_number,
     total 
 } from './hlc.js';

@@ -1,18 +1,10 @@
-import { strToDate, matchFirst, getContNumber } from '../common.js';
+import { strToDate, matchFirst } from '../common.js';
 
 export function bill_number(content) {
     return matchFirst(
         content,
         /waybill\s+or\s+reference\s+number\s*:\s*([^\n]+)/i
     );
-}
-
-export function cont_number(content) {
-    const str = matchFirst(
-        content,
-        /cont\.\'\s*\/\s*seal\s+no\.\s*:\s*([^\n]+)/i
-    );
-    return getContNumber(str);
 }
 
 export function etd(content) {
@@ -22,12 +14,13 @@ export function etd(content) {
     ));
 }
 
-export function eta(content) {
+export function eta() {
     return '';
 }
 
 export {
     invoice_number,
     vessel,
+    cont_number,
     total
 } from './hlc.js';

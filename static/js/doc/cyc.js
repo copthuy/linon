@@ -1,7 +1,5 @@
 import { 
-    fixstr,
-    matchFirst,
-    getContNumber
+    matchFirst
 } from '../common.js';
 
 import * as all from './all.js';
@@ -13,27 +11,6 @@ export function bill_number(content) {
     );
 }
 
-export function cont_number(content, regex = /cont\.\'\s*\/\s*seal\s+no\.\s*:?\s*/i) {
-    const result = new Set();
-    const matches = [...content.matchAll(
-            new RegExp(regex.source + /([^\n]+)/i.source, 'gi')
-        )].
-        filter(match => match.length === 2);
-    
-    for (const match of matches) {
-        const str = fixstr(
-            match[1].
-            replace(/\s*\(.*?\)\s*/g, '').
-            split(/\s{2,}/)[0]
-        );
-        const cont = getContNumber(str);
-        if (cont) {
-            result.add(cont);
-        }
-    }
-    return [...result];
-}
-
 export function etd(content) {
     return all.etd(content, /\(\s*\d+\s*\)\s*sailing\s+on\s*\/\s*or\s+about/i);
 }
@@ -41,6 +18,7 @@ export function etd(content) {
 export {
     invoice_number,
     vessel,
+    cont_number,
     eta,
     total
 } from './all.js';

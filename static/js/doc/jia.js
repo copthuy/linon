@@ -1,8 +1,9 @@
 import { 
     matchFirst,
-    getContNumber,
     getDatePrefix
 } from '../common.js';
+
+import * as all from './all.js';
 
 export function bill_number(content) {
     return matchFirst(
@@ -26,11 +27,7 @@ export function vessel(content) {
 }
 
 export function cont_number(content) {
-    const str = matchFirst(
-        content,
-        /cont\s*\/\s*seal\s+no\.\s*:\s*(.*?)(?=\s{3})/i
-    );
-    return getContNumber(str);
+    return all.cont_number(content);
 }
 
 const date_time = /(\d{1,2}\/\d{1,2}\/\d{4})/i;

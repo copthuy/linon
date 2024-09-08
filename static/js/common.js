@@ -223,14 +223,6 @@ export function getPODStr(content, regex) {
     return fixPODStr(res);
 }
 
-export function getContNumber(str) {
-    const [cont, seal] = [...str.matchAll(/[^\s\/]+/g)];
-    if (cont && seal && cont[0].trim().match(/[a-z]{4}\d{7,}/i)) {
-        return cont[0].trim();
-    }
-    return "";
-}
-
 export function strToDate(dateStr) {
     if (!isValidDateString(dateStr)) {
         return;

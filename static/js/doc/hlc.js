@@ -1,4 +1,4 @@
-import { matchFirst, getContNumber, strToDate } from '../common.js';
+import { matchFirst, strToDate } from '../common.js';
 import * as all from './all.js';
 
 export function invoice_number(content) {
@@ -23,11 +23,7 @@ export function vessel(content) {
 }
 
 export function cont_number(content) {
-    const str = matchFirst(
-        content,
-        /container\s*\/\s*seal\s+no.\s*:\s*([^\n]+)/i
-    );
-    return getContNumber(str); 
+    return all.cont_number(content);
 }
 
 export function etd(content) {

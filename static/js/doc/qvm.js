@@ -1,4 +1,4 @@
-import { matchFirst, getContNumber, strToDate } from '../common.js';
+import { matchFirst, strToDate } from '../common.js';
 import {
     convertTable,
     getColumnByName
@@ -9,14 +9,6 @@ export function bill_number(content) {
         content,
         /waybill.*?number:\s*([^\n]+)/i
     );
-}
-
-export function cont_number(content) {
-    const str = matchFirst(
-        content,
-        /cont\.\'\s*\/\s*seal\s+no\.:\s*([^\n]+)/i
-    );
-    return getContNumber(str);
 }
 
 function localTable(content) {
@@ -39,6 +31,7 @@ export function etd(content) {
 
 export {
     invoice_number,
+    cont_number,
     eta,
     total 
 } from './all.js';
