@@ -185,17 +185,18 @@ export function basename(path) {
 }
 
 export function getInvoiceDoc(content) {
-    const regex = /commercial\s+invoice/i;
-    const match = regex.exec(content);
+    const lines = getLines(
+        content, 
+        /commercial\s+invoice/i, 
+        'this is not a real ending of any doc file!'
+    );
 
-    if (match) {
-        return content.
-            slice(match.index).
-            replace(/\r/g, "\n").
-            replace(/\s+no\s+\&\s+date\s+of\s+invoice/i, 'No & Date of Invoice');
-    }
-
-    return '';
+    return lines.
+        join("\n").
+        replace(/\r/g, "\n").
+        replace(/commercial\s+invoice[\s\n]+/i, " ").
+        replace(/\s+\(\s*1\s*\)/i, "(1)").
+        replace(/\s+no\s+\&\s+date\s+of\s+invoice/i, 'No & Date of Invoice');
 }
 
 export function getPONumbers(content) {
