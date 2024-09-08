@@ -1,6 +1,9 @@
 export const items = [];
 export async function loadNewContent(data) {
     try {
+        if (!data.file_content) {
+            return [];
+        }
         JSON.parse(data.file_content).forEach((line, index) => {
             const item = {
                 file_path: data.file_path,
