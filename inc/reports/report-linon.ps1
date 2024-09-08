@@ -62,6 +62,9 @@ if ($null -ne $WorkBook) {
                 -ArrStr $Str `
                 -WorkSheet $WorkSheet `
                 -Anchor $REMARK
+            if (-not $CellAnchor) {
+                continue
+            }
 
             $RemarkValue = ""
             if ($item.closing_time) {

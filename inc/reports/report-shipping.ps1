@@ -137,6 +137,10 @@ if ($null -ne $WorkBook) {
                 -WorkSheet $WorkSheet `
                 -Anchor $BILL
 
+            if (-not $CellAnchor) {
+                continue
+            }
+
             #Write-Host $CellAnchor.Address()
             # Update Cells
             foreach ($data in $DataList) {
