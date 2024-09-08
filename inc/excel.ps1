@@ -56,7 +56,7 @@ function Find-Range {
     $cells = @()
 
     # Find the first occurrence
-    $cell = $Range.Find($FindStr, [Type]::Missing, [Microsoft.Office.Interop.Excel.XlFindLookIn]::xlFormulas, $LookAt)
+    $cell = $Range.Find($FindStr, [Type]::Missing, [Type]::Missing, $LookAt)
     
     if ($cell) {
         $FirstAddress = $cell.Address()
