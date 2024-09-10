@@ -19,7 +19,7 @@ Write-Host "==================================================================="
 
 $WorkBook = & "$ScriptRoot\inc\get-report.ps1" `
     -ReportPath $ReportPath `
-    -FileRegex "weekly\s+di.*\.xlsx" `
+    -FileRegex "weekly.*?di.*\.xlsx" `
     -Excel $Excel
 
 if ($null -ne $WorkBook) {
