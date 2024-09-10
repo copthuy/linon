@@ -148,7 +148,7 @@ export function getLines(content, start_pattern, end_pattern) {
 
 export function getFmtStr(key, value) {
     if (/booking_date|closing_time|si_cut_off|etd|eta/i.test(key) && typeof value.getDate !== 'undefined') {
-        return /booking_date|etd|eta/i.test(key) ? 'd-M' : 'd-M H:i';
+        return /booking_date|etd|eta/i.test(key) ? 'd-M' : 'H:i d-M';
     }
     return '';
 }
