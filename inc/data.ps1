@@ -58,11 +58,10 @@ $Content = Get-ChildItem -Path $DataPath -Recurse -File |
                 -FilePath $_ `
                 -Excel $Excel
         }
-        [pscustomobject]@{
-            file_path = $_
-            file_content = [string]$FileContent
-        }
-    } |
-    ConvertTo-Json
+        "<pre class=""d-none"" data-file=""$_"">$FileContent</pre>"
+        ""
+        ""
+        ""
+    }
 
 Set-Content -Path $TmpData -Value $Content

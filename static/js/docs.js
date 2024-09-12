@@ -125,9 +125,10 @@ export async function loadDocContent(data) {
 		const mode = getISO(file_content, factories);
 		const module = modules[mode];
 		if (!module) {
-			console.log("Missing " + data.file_path);
+			console.log("Missing module: " + mode + ' for ' + data.file_path);
 			return;
 		}
+        console.log('Module ' + mode + ' loaded!');
 		const bill_number = await applyFunc(
 			module,
 			"bill_number",

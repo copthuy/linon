@@ -48,6 +48,9 @@ export function isValidDateString(str) {
 }
 
 export function formatDate(date, format) {
+    if (date.toString().toLowerCase() === 'invalid date') {
+        return '';
+    }
     const day = date.getDate();
     const dayOfWeek = date.getDay();
     const weekOfYear = Math.floor((date - new Date(date.getFullYear(), 0, 1)) / 604800000);

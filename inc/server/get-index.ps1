@@ -13,10 +13,7 @@ param (
 )
 
 $Server = "$ScriptRoot\inc\server"
-
 $fileList = Get-Content -Path $TmpData -Raw
-$fileList = [string]$fileList
-$fileList = "const __files = $fileList"
 
 # Get all jpg files in the static/images directory
 $imageFiles = Get-ChildItem -Path (Join-Path $ScriptRoot 'static/images/*.jpg')
@@ -30,7 +27,7 @@ $HtmlContent = Get-Content -Path $HtmlPath -Raw -Encoding UTF8
 
 # Replace background and export content
 $HtmlContent = $HtmlContent -replace '{{random_file}}', $RandomFile.Name
-$HtmlContent = $HtmlContent -replace '"{{file_list}}"', $fileList
+$HtmlContent = $HtmlContent -replace '{{file_list}}', $fileList
 $Buffer = [System.Text.Encoding]::UTF8.GetBytes($HtmlContent)
 
 & "$Server\send-response.ps1" `

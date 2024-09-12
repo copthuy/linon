@@ -46,7 +46,7 @@ export async function loadBookingContent(data) {
         const mode = getISO(file_content, shipping_lines);
         const module = modules[mode];
         if (!module) {
-            console.log('Missing ' + data.file_path);
+			console.log("Missing module: " + mode + ' for ' + data.file_path);
             return;
         }
         const booking_number = await applyFunc(module, 'booking_number', file_content);

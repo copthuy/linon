@@ -2,7 +2,7 @@ $ScriptRoot = (get-item $PSScriptRoot ).FullName
 $WorkingPath = [Environment]::GetFolderPath("Desktop")
 $DataPath = "$WorkingPath\data"
 $TmpPath = "$WorkingPath\tmp"
-$TmpData = "$TmpPath\data.json"
+$TmpData = "$TmpPath\data.html"
 $ReportPath = "$WorkingPath\reports"
 $BackupPath = "$WorkingPath\bak"
 
@@ -59,3 +59,4 @@ $Excel.Quit() | Out-Null
 [System.GC]::Collect() | Out-Null
 [System.GC]::WaitForPendingFinalizers() | Out-Null
 
+Remove-Item -Path $TmpPath -Recurse -Force

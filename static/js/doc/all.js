@@ -22,6 +22,9 @@ export function invoice_number(content, regex = /\(\s*\d+\s*\)\s*no\s*\&\s*date\
         /\(\s*1\s*\)/i, 
         /\(\s*2\s*\)/i
     );
+    if (!lines.length) {
+        return '';
+    }
     const match = lines[0].match(regex);
     if (!match) {
         return '';
