@@ -101,10 +101,13 @@ if ($null -ne $WorkBook) {
                     )
                 }
                 "doc" {
-                    $SH = switch ($item.bill_number.Substring(0, 4).ToUpper()) {
-                        "EGLV" { "EVERGREEN" }
-                        "MEDU" { "MSC" }
-                        "ONEY" { "ONE" }
+                    if (-not $item.bill_number -or $item.bill_number.Length -lt 4) {
+                        continue
+                    }
+                    $SH = switch -regex ($item.bill_number.ToUpper()) {
+                        "^EGLV" { "EVERGREEN" }
+                        "^MEDU" { "MSC" }
+                        "^ONEY" { "ONE" }
                         default { $null }
                     }
                     if ($SH -ne $WorkSheet.Name) {
