@@ -9,7 +9,7 @@ export function getData() {
         block.forEach(item => {
             const obj = {};
             for (const key in item) {
-                if (/content|origin|line/i.test(key)) {
+                if (/content|line/i.test(key)) {
                     continue;
                 }
                 obj[key] = formatValue(key, item[key]);

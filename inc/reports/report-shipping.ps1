@@ -92,7 +92,7 @@ if ($null -ne $WorkBook) {
                         },
                         [pscustomobject]@{
                             Field = $ETA
-                            Value = $item.eta
+                            Value = $item.eta_origin
                         },
                         [pscustomobject]@{
                             Field = $BILL
