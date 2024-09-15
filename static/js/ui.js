@@ -8,7 +8,7 @@ import { items } from './new.js'
 import { postData, stopApp } from './connect.js'
 
 function excludeFromDisplay(key) {
-    return /content|file_path|eta_origin|line|type/i.test(key);
+    return /content|file_path|line|type/i.test(key);
 }
 
 function showForm(data) {
