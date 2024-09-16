@@ -40,6 +40,9 @@ function showForm(data) {
 
         const span = document.createElement('span');
         span.className = 'input-group-text';
+        if (key === 'eta_origin' && value.toString() !== data['eta'].toString()) {
+            span.classList.add('text-danger', 'fw-bold');
+        }
         span.textContent = title;
         inputWrapper.appendChild(span);
 
