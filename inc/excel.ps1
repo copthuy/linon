@@ -169,7 +169,7 @@ function Update-Cell {
     $Col = $WorkSheet.Range($CellRefCol).Value()
     $CellAddress = Get-Cell -CellRefCol $CellRefCol -CellRefRow $CellRefRow
     $Cell = $WorkSheet.Range($CellAddress)
-    $OldValue = $Cell.Value()
+    $OldValue = $Cell.MergeArea.Value()
     #$OldValue = ""
 
     if ($OldValue -ne $Str) {
