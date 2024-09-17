@@ -10,6 +10,7 @@ export async function loadNewContent(data) {
                 content: data.file_content,
                 line: index + 1,
                 booking_number: line['BOOKING#'] ? line['BOOKING#'].trim() : '',
+                shipping: line['SHIPPING'] ? line['SHIPPING'].trim() : '',
                 vessel: [line['VESSEL'] ? line['VESSEL'] : ''],
                 closing_time: line['CLOSING TIME'] && line['CLOSING TIME'].trim() !== '' ? new Date(line['CLOSING TIME']) : '',
                 si_cut_off: line['SI CUT OFF'] && line['SI CUT OFF'].trim() !== '' ? new Date(line['SI CUT OFF']) : '',

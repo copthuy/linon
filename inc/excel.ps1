@@ -175,7 +175,7 @@ function Update-Cell {
     if ($OldValue -ne $Str) {
         #Write-Host $Col": " -NoNewLine
         #Write-Host $Cell.Address()": "$OldValue "----->" $Str
-        if ( $Col -imatch 'comments' ) {
+        if ( $Col -imatch 'comments|remark' ) {
             $Str = $OldValue + $vbCrLf + "====================" + $vbCrLf + $Str
         }
         $Cell.MergeArea.Value = $Str

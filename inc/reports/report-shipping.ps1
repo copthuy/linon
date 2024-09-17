@@ -126,6 +126,10 @@ if ($null -ne $WorkBook) {
                     )
                 }
                 "new" {
+                    $SH = $item.shipping.ToUpper()
+                    if ($SH -ne $WorkSheet.Name) {
+                        continue
+                    }
                     $Str = $item.booking_number
                     $DataList = @(
                         [pscustomobject]@{
