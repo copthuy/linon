@@ -41,9 +41,6 @@ if ($null -ne $WorkBook) {
         #Write-Host $REMARK
 
         foreach ($item in $PostData) {
-            if ($item.file_path -notmatch "booking|doc") {
-                continue
-            }
             $CellAnchor = $null
             if ($item.po_numbers) {
                 $CellAnchor = Find-Target `
