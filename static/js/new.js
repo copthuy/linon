@@ -4,7 +4,11 @@ export async function loadNewContent(data) {
         if (!data.file_content) {
             return [];
         }
-        JSON.parse(data.file_content).forEach((line, index) => {
+        let new_data = JSON.parse(data.file_content);
+        if (typeof new_data.length === 'undefined') {
+            new_data = [new_data];
+        }
+        new_data.forEach((line, index) => {
             const item = {
                 file_path: data.file_path,
                 content: data.file_content,
