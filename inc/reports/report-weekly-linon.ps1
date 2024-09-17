@@ -55,14 +55,21 @@ if ($null -ne $WorkBook) {
                     -ArrStr $item.booking_number `
                     -WorkSheet $WorkSheet `
                     -Anchor $REMARK `
-                    -AppendRow $false
+                    -AppendRow $false `
+                    -LookAt 2
             }
+
             if (-not $CellAnchor) {
                 continue
             }
-            #Write-Host $CellAnchor.Address()
 
             $RemarkValue = ""
+            if ($item.closing_time) {
+                $RemarkValue += "Closing Time: " + $item.closing_time + $vbCrLf
+            }
+            if ($item.si_cut_off) {
+                $RemarkValue += "SI Cut Off: " + $item.si_cut_off
+            }
             if ($item.vessel) {
                 $RemarkValue += "VESSEL: " + $item.vessel + $vbCrLf
             }

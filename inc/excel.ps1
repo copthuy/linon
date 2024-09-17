@@ -104,7 +104,9 @@ function Find-Target {
         [Parameter(Mandatory = $true)]
         [string]$Anchor,
 
-        [bool]$AppendRow = $true
+        [bool]$AppendRow = $true,
+
+        [int]$LookAt = $xlWhole
     )
 
     $arr = [array]( $ArrStr -split ";" | ForEach-Object { $_.Trim() } | Sort )
@@ -112,7 +114,7 @@ function Find-Target {
         Find-Range `
         -Range $WorkSheet.UsedRange `
         -FindStr $arr[0] `
-        -LookAt $xlWhole
+        -LookAt $LookAt
     )
     
     $UpdateCell = $null
@@ -128,7 +130,7 @@ function Find-Target {
             $Range = $TargetMergeAddress -replace '[a-z]+', $Column
             $RangeArr = $WorkSheet.Range( $Range ).Value() | Sort -Unique
 
-            if ( "$arr" -eq "$RangeArr" ) {
+            if ( ( "$arr" -eq "$RangeArr" ) -or ( $LookAt -eq $xlPart ) ) {
                 $UpdateCell = $TargetCell
             }
 
@@ -137,7 +139,7 @@ function Find-Target {
         }
     }
 
-    if ( $UpdateCell -eq $null -and $AppendRow) {
+    if ( -not $UpdateCell -and $AppendRow) {
         $RemarkColumn = Get-Coord -Address "$Anchor" -xlOption $xlByColumns
         $LastRow = $WorkSheet.UsedRange.Rows.Count + 1
         $UpdateCell = $WorkSheet.Range($RemarkColumn + $LastRow)
