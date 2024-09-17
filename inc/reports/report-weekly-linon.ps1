@@ -44,11 +44,14 @@ if ($null -ne $WorkBook) {
             if ($item.file_path -notmatch "booking|doc") {
                 continue
             }
-            $CellAnchor = Find-Target `
-                -ArrStr $item.po_numbers `
-                -WorkSheet $WorkSheet `
-                -Anchor $REMARK `
-                -AppendRow $false
+            $CellAnchor = $null
+            if ($item.po_numbers) {
+                $CellAnchor = Find-Target `
+                    -ArrStr $item.po_numbers `
+                    -WorkSheet $WorkSheet `
+                    -Anchor $REMARK `
+                    -AppendRow $false
+            }
 
             if (-not $CellAnchor -and $item.booking_number) {
                 $CellAnchor = Find-Target `
