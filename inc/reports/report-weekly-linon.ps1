@@ -64,12 +64,6 @@ if ($null -ne $WorkBook) {
             }
 
             $RemarkValue = ""
-            if ($item.closing_time) {
-                $RemarkValue += "Closing Time: " + $item.closing_time + $vbCrLf
-            }
-            if ($item.si_cut_off) {
-                $RemarkValue += "SI Cut Off: " + $item.si_cut_off
-            }
             if ($item.vessel) {
                 $RemarkValue += "VESSEL: " + $item.vessel + $vbCrLf
             }
