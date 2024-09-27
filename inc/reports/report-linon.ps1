@@ -73,6 +73,7 @@ if ($null -ne $WorkBook) {
             if ($item.si_cut_off) {
                 $RemarkValue += "SI Cut Off: " + $item.si_cut_off
             }
+            $RemarkValue = $RemarkValue.TrimEnd($vbCrLf)
 
             $DataList = @(
                 [pscustomobject]@{

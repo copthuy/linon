@@ -98,7 +98,7 @@ const factories = {
 	hpc: /HAO\s+PHONG\s+I/i, //// hgc
 	hyf: /HONG\s+YI/i, ////
 	jia: /JIA\s+DING\s+INDUSTRY/i,
-	jyf: /JIN\s+YI\s+FONG/i,
+	jyf: /XIN\s+GUAN\s+XING/i,
 	nkc: /NGHIA\s+KY/i, //
 	pkp: /PHU\s+KHANG\s+PHAT/i, ////
 	pri: /PRINCEMATE\s+VN/i, ////

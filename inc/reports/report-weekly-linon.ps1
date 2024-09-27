@@ -76,6 +76,7 @@ if ($null -ne $WorkBook) {
             if ($item.cont_number) {
                 $RemarkValue += "CONT: " + $item.cont_number
             }
+            $RemarkValue = $RemarkValue.TrimEnd($vbCrLf)
 
             # Update Cells
             if (-not $RemarkValue) {
