@@ -41,5 +41,5 @@ export function eta(content) {
 }
 
 export function total(content) {
-    return all.total(content, /in\s+words\s*:\s*us\s+dollars/i);
+    return all.total(content, /in\s+words\s*:/i);
 }

@@ -23,7 +23,6 @@ import * as hoa from "./doc/hoa.js"; //
 import * as hpc from "./doc/hpc.js"; //// hgc
 import * as hyf from "./doc/hyf.js"; ////
 import * as jia from "./doc/jia.js";
-import * as jyf from "./doc/jyf.js";
 import * as nkc from "./doc/nkc.js"; //
 import * as pkp from "./doc/pkp.js"; ////
 import * as pri from "./doc/pri.js"; ////
@@ -41,6 +40,7 @@ import * as vdt from "./doc/vdt.js"; ////
 import * as vto from "./doc/vto.js"; ////
 import * as xaw from "./doc/xaw.js"; // hgc
 import * as zfc from "./doc/zfc.js";
+import * as xgx from "./doc/xgx.js";
 
 const modules = {
 	all: all,
@@ -60,7 +60,6 @@ const modules = {
 	hpc: hpc,
 	hyf: hyf,
 	jia: jia,
-	jyf: jyf,
 	nkc: nkc,
 	pkp: pkp,
 	pri: pri,
@@ -78,6 +77,7 @@ const modules = {
 	vto: vto,
 	xaw: xaw,
 	zfc: zfc,
+	xgx: xgx,
 };
 
 const factories = {
@@ -98,7 +98,6 @@ const factories = {
 	hpc: /HAO\s+PHONG\s+I/i, //// hgc
 	hyf: /HONG\s+YI/i, ////
 	jia: /JIA\s+DING\s+INDUSTRY/i,
-	jyf: /XIN\s+GUAN\s+XING/i,
 	nkc: /NGHIA\s+KY/i, //
 	pkp: /PHU\s+KHANG\s+PHAT/i, ////
 	pri: /PRINCEMATE\s+VN/i, ////
@@ -116,6 +115,7 @@ const factories = {
 	vto: /VAN\s+THANH/i, ////
 	xaw: /TUONG\s+AN\s+WOOD/i, // hgc
 	zfc: /TRUNG\s+DANH/i,
+	xgx: /XIN\s+GUAN\s+XING/i,
 };
 
 export const docs = [];
