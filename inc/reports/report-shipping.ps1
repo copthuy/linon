@@ -136,6 +136,10 @@ if ($null -ne $WorkBook) {
                             Field = $REMARK1
                             Value = $item.etd
                         }
+                        [pscustomobject]@{
+                            Field = $ETA
+                            Value = $item.eta_origin
+                        }
                     )
                 }
             }

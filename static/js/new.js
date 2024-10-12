@@ -19,6 +19,7 @@ export async function loadNewContent(data) {
                 closing_time: line['CLOSING TIME'] && line['CLOSING TIME'].trim() !== '' ? new Date(line['CLOSING TIME']) : '',
                 si_cut_off: line['SI CUT OFF'] && line['SI CUT OFF'].trim() !== '' ? new Date(line['SI CUT OFF']) : '',
                 etd: line['ETD'] ? new Date(line['ETD']) : '',
+                eta_origin: line['OETA'] ? new Date(line['OETA']) : '',
                 eta: line['ETA'] ? new Date(line['ETA']) : '',
                 type: 'new',
             }
