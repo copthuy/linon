@@ -114,7 +114,7 @@ const factories = {
 	vdt: /VINH\s+DAT\s+THANH/i, ////
 	vto: /VAN\s+THANH/i, ////
 	xaw: /TUONG\s+AN\s+WOOD/i, // hgc
-	zfc: /TRUNG\s+DANH/i,
+	zfc: /TRUNG\s+DANH/i, ////
 	xgx: /XIN\s+GUAN\s+XING/i,
 };
 
