@@ -7,7 +7,7 @@ import * as all from './all.js';
 export function bill_number(content) {
     return matchFirst(
         content,
-        /bill\s+no\s*\.\s*(\w+)/i
+        /bill\s+no\s*[\.:]\s*(\w+)/i
     ).replace(/\s+/, '');
 }
 
