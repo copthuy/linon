@@ -41,6 +41,7 @@ import * as vto from "./doc/vto.js"; ////
 import * as xaw from "./doc/xaw.js"; // hgc
 import * as zfc from "./doc/zfc.js";
 import * as xgx from "./doc/xgx.js";
+import * as ydc from "./doc/ydc.js";
 
 const modules = {
 	all: all,
@@ -78,6 +79,7 @@ const modules = {
 	xaw: xaw,
 	zfc: zfc,
 	xgx: xgx,
+	ydc: ydc,
 };
 
 const factories = {
@@ -116,6 +118,7 @@ const factories = {
 	xaw: /TUONG\s+AN\s+WOOD/i, // hgc
 	zfc: /TRUNG\s+DANH/i, ////
 	xgx: /XIN\s+GUAN\s+XING/i,
+	ydc: /YING\s+DONG/i,
 };
 
 export const docs = [];
