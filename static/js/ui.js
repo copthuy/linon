@@ -54,13 +54,6 @@ function showForm(data) {
             input.type = 'text';
         }
         const fmtStr = getFmtStr(key, value);
-        if (fmtStr !== '') {
-            flatpickr(input, {
-                enableTime: true,
-                time_24hr: true,
-                dateFormat: fmtStr,
-            });
-        }
         input.value = formatValue(key, value);
         input.className = 'form-control fw-bold';
         const updateData = (evt) => {
@@ -70,6 +63,13 @@ function showForm(data) {
         input.addEventListener('input', updateData);
         input.addEventListener('change', updateData);
         inputWrapper.appendChild(input);
+        if (fmtStr !== '') {
+            flatpickr(input, {
+                enableTime: true,
+                time_24hr: true,
+                dateFormat: fmtStr,
+            });
+        }
     }
 
     const btnWrapper = document.createElement('div');
