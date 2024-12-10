@@ -60,10 +60,17 @@ if ($null -ne $WorkBook) {
                 $RemarkValue += "VESSEL: " + $item.vessel + $vbCrLf
             }
             if ($item.etd) {
-                $RemarkValue += "ETD: " + $item.etd + " / "
+                $etd = Get-ShortDate -InputDate $item.etd
+                $RemarkValue += "ETD: " + $etd
+                if ($item.eta) {
+                    $RemarkValue += " / "
+                } else {
+                    $RemarkValue += $vbCrLf
+                }
             }
             if ($item.eta) {
-                $RemarkValue += "ETA: " + $item.eta + $vbCrLf
+                $eta = Get-ShortDate -InputDate $item.eta
+                $RemarkValue += "ETA: " + $eta + $vbCrLf
             }
             if ($item.cont_number) {
                 $RemarkValue += "CONT: " + $item.cont_number

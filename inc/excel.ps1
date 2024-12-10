@@ -211,3 +211,18 @@ function Color-Row {
 
     Write-Output $Range.Address()
 }
+
+function Get-ShortDate {
+    param (
+        [Parameter(Mandatory = $true)]
+        [string]$InputDate
+    )
+    try {
+        # Convert the input string to a DateTime object and format it as "dd-MM"
+        return (Get-Date $InputDate -Format "dd-MMM")
+    } catch {
+        # Handle invalid date formats
+        Write-Error "Invalid date format: $InputDate"
+        return $null
+    }
+}
