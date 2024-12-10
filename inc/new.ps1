@@ -26,7 +26,12 @@ if (Test-Path -Path $FilePath) {
         $rowHasData = $false
         for ($col = 1; $col -le $columns; $col++) {
             $header = $range.Cells.Item(1, $col).Text.Trim()
-            $value = $range.Cells.Item($row, $col).Text.Trim()
+            $value = $range.Cells.Item($row, $col).Value()
+            if ($null -ne $value) {
+                $value = $value.ToString().Trim()
+            } else {
+                $value = ""
+            }
             if ($value -ne '') {
                 $rowHasData = $true
             }
