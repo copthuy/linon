@@ -37,6 +37,7 @@ import * as tlp from "./doc/tlp.js"; //// nkc
 import * as uls from "./doc/uls.js"; ////
 import * as unt from "./doc/unt.js"; ////
 import * as vdt from "./doc/vdt.js"; ////
+import * as vha from "./doc/vha.js";
 import * as vto from "./doc/vto.js"; ////
 import * as xaw from "./doc/xaw.js"; // hgc
 import * as zfc from "./doc/zfc.js";
@@ -75,6 +76,7 @@ const modules = {
 	uls: uls,
 	unt: unt,
 	vdt: vdt,
+	vha: vha,
 	vto: vto,
 	xaw: xaw,
 	zfc: zfc,
@@ -114,6 +116,7 @@ const factories = {
 	uls: /MING\s+ZE/i, ////
 	unt: /UNITY\s+VIET\s+NAM/i, ////
 	vdt: /VINH\s+DAT\s+THANH/i, ////
+	vha: /VAN\s+HAO/i,
 	vto: /VAN\s+THANH/i, ////
 	xaw: /TUONG\s+AN\s+WOOD/i, // hgc
 	zfc: /TRUNG\s+DANH/i, ////
