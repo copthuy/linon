@@ -13,6 +13,7 @@ import * as cba from "./doc/cba.js"; ////
 import * as cow from "./doc/cow.js"; ////
 import * as cyc from "./doc/cyc.js"; //
 import * as dlf from "./doc/dlf.js"; // hgc
+import * as gis from "./doc/gis.js"; ////
 import * as goc from "./doc/goc.js"; // hgc
 import * as hat from "./doc/hat.js"; ////
 import * as hgc from "./doc/hgc.js"; //
@@ -52,6 +53,7 @@ const modules = {
 	cow: cow,
 	cyc: cyc,
 	dlf: dlf,
+	gis: gis,
 	goc: goc,
 	hat: hat,
 	hgc: hgc,
@@ -92,6 +94,7 @@ const factories = {
 	cow: /COUNTRY\s+WOOD/i, ////
 	cyc: /CYC\s+IMPORT\s+EXPORT/i, //
 	dlf: /DUC\s+LOI/i, // hgc
+	gis: /GIAI\s+SAM/i, // hgc
 	goc: /GLORY\s+OCEANIC/i, // hgc
 	hat: /HA\s+THANH/i, ////
 	hgc: /HOANG\s+GIANG/i, //
