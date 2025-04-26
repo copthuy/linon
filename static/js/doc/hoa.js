@@ -9,7 +9,7 @@ export function bill_number(content) {
 }
 
 export function total(content) {
-    return all.total(content, /say\s+total\s+in\s+us/i);
+    return all.total(content, /s\s*a\s*y\s+t\s*o\s*t\s*a\s*l\s+i\s*n\s+u\s*s/i);
 }
 
 export {

@@ -38,6 +38,7 @@ export function invoice_number(content, regex = /\(\s*\d+\s*\)\s*no\s*\&\s*date\
             replace(/\s*no\s*[\.:\s]+\s*/i, '').
             replace(/((of\s+)?invoice\s*)+/i, '').
             replace(/date.+/i, '').
+            replace(/linon.+/i, '').
             replace(/\s{2,}.+/g, '').
             trim()
         ).

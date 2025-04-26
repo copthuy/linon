@@ -162,6 +162,8 @@ export function formatValue(key, value) {
         return;
     } else if (fmtStr !== '') {
         return formatDate(value, fmtStr);
+    } else if (key === 'total' && !isNaN(value)) {
+        return Number(value).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
     } else if (typeof value === 'object' && typeof value.join !== 'undefined') {
         return value.join(';');
     }

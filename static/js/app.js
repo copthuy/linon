@@ -41,13 +41,15 @@ document.addEventListener('DOMContentLoaded', async () => {
             await loadBookingContent(item);
             updateLayout(item);
         } else if (/^doc/i.test(name)) {
-            await loadDocContent(item);
-            updateLayout(item);
+            const items = await loadDocContent(item);
+            items.forEach(el => {
+                updateLayout(el);
+            });
         } else if (/^new\s+version/i.test(name)) {
             const items = await loadNewContent(item);
             items.forEach(el => {
                 updateLayout(el);
-            })
+            });
         }
         updateProgressBar();
     }

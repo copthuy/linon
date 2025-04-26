@@ -5,7 +5,9 @@ export function invoice_number(content) {
     return matchFirst(
         content,
         /no\.\s*:\s*([^\n]+)/i
-    ).replace(/\s+date[^\n]+/i, '');
+    )
+    .replace(/\s+date[^\n]+/i, '')
+    .replace(/\s+linon\s+home[^\n]+/i, '');
 }
 
 export function bill_number(content) {

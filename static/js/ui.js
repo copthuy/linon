@@ -164,6 +164,7 @@ export function loadItem() {
     }
     const idx = select.selectedIndex;
     const value = select.options[idx].value;
+    const [val, line] = value.split(/\|{5}/);
     for (let data of bookings) {
         if (data.file_path === value) {
             showForm(data);
@@ -171,12 +172,11 @@ export function loadItem() {
         }
     }
     for (let data of docs) {
-        if (data.file_path === value) {
+        if (data.file_path === val && data.line === Number(line)) {
             showForm(data);
             return;
         }
     }
-    const [val, line] = value.split(/\|{5}/);
     for (let data of items) {
         if (data.file_path === val && data.line === Number(line)) {
             showForm(data);

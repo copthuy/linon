@@ -131,8 +131,22 @@ const factories = {
 };
 
 export const docs = [];
+function updateItemValues(targetItem, sourceItem) {
+    for (const key in sourceItem) {
+        if (
+			key !== 'line' &&
+            Object.prototype.hasOwnProperty.call(targetItem, key) &&
+            (targetItem[key] === null || targetItem[key] === undefined || targetItem[key] === '') &&
+            sourceItem[key] !== null && sourceItem[key] !== undefined && sourceItem[key] !== ''
+        ) {
+            targetItem[key] = sourceItem[key];
+        }
+    }
+	return targetItem;
+}
 export async function loadDocContent(data) {
 	try {
+		const items = [];
 		const file_content = data.file_content;
 		const mode = getISO(file_content, factories);
 		const module = modules[mode];
@@ -141,40 +155,68 @@ export async function loadDocContent(data) {
 			return;
 		}
         console.log('Module ' + mode + ' loaded!');
-		const bill_number = await applyFunc(
-			module,
-			"bill_number",
-			file_content
-		);
-		const invoice_doc = getInvoiceDoc(file_content);
-		const invoice_number = await applyFunc(
-			module,
-			"invoice_number",
-			invoice_doc
-		);
-		const vessel = await applyFunc(module, "vessel", invoice_doc);
-		const cont_number = await applyFunc(module, "cont_number", invoice_doc);
-		const etd = await applyFunc(module, "etd", invoice_doc);
-		const eta = await applyFunc(module, "eta", invoice_doc);
-		const total = await applyFunc(module, "total", invoice_doc);
-
-		const item = {
-			content: file_content,
+		const default_item = {
 			file_path: data.file_path,
+			content: file_content,
+			line: null,
 			po_numbers: getPONumbers(data.file_path),
 			factory: ISOtoString(factories[mode]),
-			bill_number: bill_number,
-			invoice_number: invoice_number,
-			vessel: vessel,
-			cont_number: cont_number,
-			etd: etd,
-			eta: eta,
-			total: total,
-            type: 'doc',
+			bill_number: null,
+			invoice_number: null,
+			vessel: null,
+			cont_number: null,
+			etd: null,
+			eta: null,
+			total: null,
+			type: 'doc',
 		};
 
-		docs.push(item);
-		return item;
+		const parts = file_content.split(/commercial\s+invoice|invoice\s+for\s+export\s+service/i).slice(1);
+		let i = 1;
+		for (const part of parts) {
+			const doc = 'COMMERCIAL INVOICE ' + part;
+			const bill_number = await applyFunc(
+				module,
+				"bill_number",
+				doc
+			);
+			const invoice_doc = getInvoiceDoc(doc);
+			const invoice_number = await applyFunc(
+				module,
+				"invoice_number",
+				invoice_doc
+			);
+			const vessel = await applyFunc(module, "vessel", invoice_doc);
+			const cont_number = await applyFunc(module, "cont_number", invoice_doc);
+			const etd = await applyFunc(module, "etd", invoice_doc);
+			const eta = await applyFunc(module, "eta", invoice_doc);
+			const total = await applyFunc(module, "total", invoice_doc);
+	
+			const item = {
+				file_path: data.file_path,
+				content: file_content,
+				line: i++,
+				po_numbers: getPONumbers(data.file_path),
+				factory: ISOtoString(factories[mode]),
+				bill_number: bill_number,
+				invoice_number: invoice_number,
+				vessel: vessel,
+				cont_number: cont_number,
+				etd: etd,
+				eta: eta,
+				total: total,
+				type: 'doc',
+			};
+			updateItemValues(default_item, item);
+			items.push(item);
+		}
+		
+		for (i = 0; i < items.length; i++) {
+			updateItemValues(items[i], default_item);
+		}
+		//console.log(items);
+		docs.push(...items);
+		return items;
 	} catch (error) {
 		console.error("Error loading doc:", error);
 	}
