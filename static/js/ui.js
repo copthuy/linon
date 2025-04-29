@@ -33,7 +33,7 @@ function showForm(data) {
             .replace(/_/g, ' ')
             .replace(/numbers?/gi, 'No.')
             .replace(/company/gi, 'Co.');
-        
+
         const inputWrapper = document.createElement('div');
         inputWrapper.className = 'input-group';
         row.appendChild(inputWrapper);
@@ -101,7 +101,7 @@ function showForm(data) {
         textarea.appendChild(code);
     });
 
-    const url = '/load-file?path=' + encodeURIComponent(data.file_path.replace(/\.xlsx?$/, '.pdf'));    
+    const url = '/load-file?path=' + encodeURIComponent(data.file_path.replace(/\.xlsx?$/, '.pdf'));
     const frame = document.createElement('object');
     frame.className = 'w-100 h-100 border-none';
     frame.type = 'application/pdf';
@@ -233,9 +233,20 @@ export function prepareLayout() {
                 heightAuto: false,
             }).then(async result => {
                 if (result.isConfirmed) {
+                    Sweetalert2.fire({
+                        title: "Cập nhật dữ liệu!",
+                        icon: "warning",
+                        showConfirmlButton: false,
+                        showCancelButton: false,
+                        allowOutsideClick: false,
+                        heightAuto: false,
+                        didOpen: () => {
+                            Sweetalert2.showLoading();
+                        }
+                    });
                     const response = await postData();
-                    if (response && 
-                        response.status && 
+                    if (response &&
+                        response.status &&
                         response.status.length
                     ) {
                         Sweetalert2.fire({
@@ -245,6 +256,21 @@ export function prepareLayout() {
                             confirmButtonColor: '#198754',
                             allowOutsideClick: false,
                             heightAuto: false,
+                            didOpen: () => {
+                                Sweetalert2.hideLoading();
+                            }
+                        });
+                    } else {
+                        Sweetalert2.fire({
+                            title: "Cập nhật dữ liệu thất bại!",
+                            icon: "error",
+                            confirmButtonText: 'OK',
+                            confirmButtonColor: '#ff0000',
+                            allowOutsideClick: false,
+                            heightAuto: false,
+                            didOpen: () => {
+                                Sweetalert2.hideLoading();
+                            }
                         });
                     }
                 }

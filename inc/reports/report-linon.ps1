@@ -57,11 +57,12 @@ if ($null -ne $WorkBook) {
 
             #Write-Host "======================================================="
             #Write-Host $item.file_path
-
             $CellAnchor = Find-Target `
                 -ArrStr $Str `
                 -WorkSheet $WorkSheet `
-                -Anchor $REMARK
+                -Anchor $REMARK `
+                -AppendRow ($item.line -eq "2")
+
             if (-not $CellAnchor) {
                 continue
             }
