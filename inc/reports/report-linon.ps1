@@ -57,11 +57,14 @@ if ($null -ne $WorkBook) {
 
             #Write-Host "======================================================="
             #Write-Host $item.file_path
+            if ($item.line -eq 2) {
+                $Str = 'Append New Line'
+            }
             $CellAnchor = Find-Target `
                 -ArrStr $Str `
                 -WorkSheet $WorkSheet `
                 -Anchor $REMARK `
-                -AppendRow ($item.line -eq "2")
+                -AppendRow $true
 
             if (-not $CellAnchor) {
                 continue
@@ -102,6 +105,12 @@ if ($null -ne $WorkBook) {
                     Value = $item.total
                 }
             )
+            if ($item.line -eq 2) {
+                $DataList += [pscustomobject]@{
+                    Field = $PO
+                    Value = $item.po_numbers
+                }
+            }
 
             # Check new row
             $PoCell = Get-Cell `

@@ -236,7 +236,7 @@ export function prepareLayout() {
                     Sweetalert2.fire({
                         title: "Cập nhật dữ liệu!",
                         icon: "warning",
-                        showConfirmlButton: false,
+                        showConfirmButton: false,
                         showCancelButton: false,
                         allowOutsideClick: false,
                         heightAuto: false,
