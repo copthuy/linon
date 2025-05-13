@@ -24,6 +24,7 @@ import * as hoa from "./doc/hoa.js"; //
 import * as hpc from "./doc/hpc.js"; //// hgc
 import * as hyf from "./doc/hyf.js"; ////
 import * as jia from "./doc/jia.js";
+import * as lon from "./doc/lon.js";
 import * as mgc from "./doc/mgc.js";
 import * as nkc from "./doc/nkc.js"; //
 import * as pkp from "./doc/pkp.js"; ////
@@ -65,6 +66,7 @@ const modules = {
 	hpc: hpc,
 	hyf: hyf,
 	jia: jia,
+	lon: lon,
 	mgc: mgc,
 	nkc: nkc,
 	pkp: pkp,
@@ -107,6 +109,7 @@ const factories = {
 	hpc: /HAO\s+PHONG\s+I/i, //// hgc
 	hyf: /HONG\s+YI/i, ////
 	jia: /JIA\s+DING\s+INDUSTRY/i,
+	lon: /LONGWIN\s+FURNITURE/i, ////
 	mgc: /MADE\s+GREEN\s+COMPANY/i, //
 	nkc: /NGHIA\s+KY/i, //
 	pkp: /PHU\s+KHANG\s+PHAT/i, ////
