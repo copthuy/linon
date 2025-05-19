@@ -42,10 +42,11 @@ import * as unt from "./doc/unt.js"; ////
 import * as vdt from "./doc/vdt.js"; ////
 import * as vha from "./doc/vha.js";
 import * as vto from "./doc/vto.js"; ////
+import * as woo from "./doc/woo.js";
 import * as xaw from "./doc/xaw.js"; // hgc
-import * as zfc from "./doc/zfc.js";
 import * as xgx from "./doc/xgx.js";
 import * as ydc from "./doc/ydc.js";
+import * as zfc from "./doc/zfc.js";
 
 const modules = {
 	all: all,
@@ -84,10 +85,11 @@ const modules = {
 	vdt: vdt,
 	vha: vha,
 	vto: vto,
+	woo: woo,
 	xaw: xaw,
-	zfc: zfc,
 	xgx: xgx,
 	ydc: ydc,
+	zfc: zfc,
 };
 
 const factories = {
@@ -127,10 +129,11 @@ const factories = {
 	vdt: /VINH\s+DAT\s+THANH/i, ////
 	vha: /VAN\s+HAO/i,
 	vto: /VAN\s+THANH/i, ////
+	woo: /WOODPARK/i, ////
 	xaw: /TUONG\s+AN\s+WOOD/i, // hgc
-	zfc: /TRUNG\s+DANH/i, ////
 	xgx: /XIN\s+GUAN\s+XING/i,
 	ydc: /YING\s+DONG/i,
+	zfc: /TRUNG\s+DANH/i, ////
 };
 
 export const docs = [];
@@ -151,7 +154,7 @@ export async function loadDocContent(data) {
 	try {
 		const items = [];
 		const file_content = data.file_content;
-		const mode = getISO(file_content, factories);
+		const mode = getISO(file_content, factories); //  || "all"
 		const module = modules[mode];
 		if (!module) {
 			console.log("Missing module: " + mode + ' for ' + data.file_path);
