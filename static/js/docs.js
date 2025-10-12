@@ -13,6 +13,7 @@ import * as cba from "./doc/cba.js"; ////
 import * as cow from "./doc/cow.js"; ////
 import * as cyc from "./doc/cyc.js"; //
 import * as dlf from "./doc/dlf.js"; // hgc
+import * as ful from "./doc/ful.js"; ////
 import * as gis from "./doc/gis.js"; ////
 import * as goc from "./doc/goc.js"; // hgc
 import * as hat from "./doc/hat.js"; ////
@@ -58,6 +59,7 @@ const modules = {
 	cow: cow,
 	cyc: cyc,
 	dlf: dlf,
+	ful: ful,
 	gis: gis,
 	goc: goc,
 	hat: hat,
@@ -104,6 +106,7 @@ const factories = {
 	cow: /COUNTRY\s+WOOD/i, ////
 	cyc: /CYC\s+IMPORT\s+EXPORT/i, //
 	dlf: /DUC\s+LOI/i, // hgc
+	ful: /FULLWAY\s+COMPANY\s+LIMITED/i, ////
 	gis: /GIAI\s+SAM/i, // hgc
 	goc: /GLORY\s+OCEANIC/i, // hgc
 	hat: /HA\s+THANH/i, ////
@@ -159,7 +162,8 @@ function updateItemValues(targetItem, sourceItem) {
 export async function loadDocContent(data) {
 	try {
 		const items = [];
-		const file_content = data.file_content;
+		let file_content = data.file_content;
+		file_content = file_content.replace(/c\s*o\s*m\s*m\s*e\s*r\s*c\s*i\s*a\s*l/gi, "COMMERCIAL");
 		const mode = getISO(file_content, factories); //  || "all"
 		const module = modules[mode];
 		if (!module) {
@@ -184,6 +188,9 @@ export async function loadDocContent(data) {
 		};
 
 		const parts = file_content.split(/commercial\s+invoice|invoice\s+for\s+export\s+service/i).slice(1);
+		console.log();
+		console.log(parts);
+		console.log();
 		let i = 1;
 		for (const part of parts) {
 			const doc = 'COMMERCIAL INVOICE ' + part;
