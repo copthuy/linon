@@ -182,8 +182,6 @@ export function fixstr(str) {
 
 export function matchFirst(content, regex) {
     const match = content.match(regex);
-    console.log(regex.toString());
-    console.log(match);
     return match ? fixstr(match[1]) : '';
 }
 
