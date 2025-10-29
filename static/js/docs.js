@@ -32,6 +32,7 @@ import * as nkc from "./doc/nkc.js"; //
 import * as pkp from "./doc/pkp.js"; ////
 import * as pri from "./doc/pri.js"; ////
 import * as qvm from "./doc/qvm.js"; //
+import * as rkr from "./doc/rkr.js"; ////
 import * as sav from "./doc/sav.js"; ////
 import * as spc from "./doc/spc.js";
 import * as sun from "./doc/sun.js"; ////
@@ -78,6 +79,7 @@ const modules = {
 	pkp: pkp,
 	pri: pri,
 	qvm: qvm,
+	rkr: rkr,
 	sav: sav,
 	spc: spc,
 	sun: sun,
@@ -125,6 +127,7 @@ const factories = {
 	pkp: /PHU\s+KHANG\s+PHAT/i, ////
 	pri: /PRINCEMATE\s+VN/i, ////
 	qvm: /QUYNH\s+VY/i, //
+	rkr: /RK\s+RESOURCES/i, ////
 	sav: /SAM\s+VUONG/i, ////
 	spc: /SANH\s+PHAT/i,
 	sun: /SUN\s+CO\./i, ////
