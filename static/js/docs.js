@@ -47,6 +47,7 @@ import * as unt from "./doc/unt.js"; ////
 import * as vdt from "./doc/vdt.js"; ////
 import * as vha from "./doc/vha.js";
 import * as vto from "./doc/vto.js"; ////
+import * as win from "./doc/win.js";
 import * as woo from "./doc/woo.js";
 import * as xaw from "./doc/xaw.js"; // hgc
 import * as xgx from "./doc/xgx.js";
@@ -95,6 +96,7 @@ const modules = {
 	vdt: vdt,
 	vha: vha,
 	vto: vto,
+	win: win,
 	woo: woo,
 	xaw: xaw,
 	xgx: xgx,
@@ -144,6 +146,7 @@ const factories = {
 	vdt: /VINH\s+DAT\s+THANH/i, ////
 	vha: /VAN\s+HAO/i,
 	vto: /VAN\s+THANH/i, ////
+	win: /WINLAND\s+FURNISHINGS\s+COMPANY/i, ////
 	woo: /WOODPARK/i, ////
 	xaw: /TUONG\s+AN\s+WOOD/i, // hgc
 	xgx: /XIN\s+GUAN\s+XING/i,
