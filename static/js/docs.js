@@ -22,6 +22,7 @@ import * as hgt from "./doc/hgt.js"; //
 import * as hlc from "./doc/hlc.js";
 import * as hmv from "./doc/hmv.js"; ////
 import * as hoa from "./doc/hoa.js"; //
+import * as hon from "./doc/hon.js"; //
 import * as hop from "./doc/hop.js"; ////
 import * as hpc from "./doc/hpc.js"; //// hgc
 import * as hxy from "./doc/hxy.js"; //
@@ -71,6 +72,7 @@ const modules = {
 	hlc: hlc,
 	hmv: hmv,
 	hoa: hoa,
+	hon: hon,
 	hop: hop,
 	hpc: hpc,
 	hxy: hxy,
@@ -121,6 +123,7 @@ const factories = {
 	hlc: /LAM\s+THINH/i,
 	hmv: /HONG\s+MEI\s+VN/i, ////
 	hoa: /HIEP\s+HOA\s+PHAT/i, //
+	hon: /HO\s+NAI\s+M\s+AND\s+M/i, ////
 	hop: /HOA\s+PHAT\s+WOOD/i, //
 	hpc: /HAO\s+PHONG\s+I/i, //// hgc
 	hxy: /HANG\s+XUYEN\s+CO/i, //

@@ -30,6 +30,10 @@ export function isValidDateString(str) {
     if (!/^[a-z\.,-\/\d\s:]+$/i.test(str)) {
         return false;
     }
+    const today = new Date();
+    if (thisYear < today.getFullYear() || thisYear > today.getFullYear() + 1) {
+        return false;
+    }
     for (const match of [...str.matchAll(/\d+/g)]) {
         if (![1, 2, 4].includes(Number(match).toString().length)) {
             return false;
