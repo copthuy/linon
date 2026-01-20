@@ -1,93 +1,111 @@
-import { 
+import {
     matchFirst
     , getVesselStr
     , getPODStr
-    , getDatePrefix 
-    , getBookingET 
+    , getDatePrefix
+    , getBookingET
     , getPreviousDate
+    , getLines
 } from '../common.js';
+
+function fixDateStr(dateStr) {
+    const [day, month, year, hours, minutes] = dateStr.split(/\D+/);
+    return `${year}-${month}-${day} ${hours ? hours : '00'}:${minutes ? minutes : '00'}`;
+}
 
 export function booking_number(content) {
     return matchFirst(
         content,
-        /S\s*:\s*:\s*(\w+)/i
+        /booking\s+reference\s+(\w+)/i
     );
 }
 
 export function booking_date(content) {
     return getDatePrefix(
         content,
-        /ti-u\s*/i,
-        /(\d{2}[a-z]{2}\s+of\s+[a-z]+\s+\d{4})/i
+        /\s*valid\s+for\s+gate-in\s*\(\*\)\s+number\s+/i,
+        /(\d{2}\/\d{2}\/\d{4})/i,
+        fixDateStr
     );
 }
 
 export function bill_number(content) {
     return matchFirst(
         content,
-        /note\s*:\s*bl([^\n]+)/i
+        /original\/sea\s+waybill\(\*\*\)\s+(\w+)/i
     );
 }
 
 export function vessel(content) {
     return [getVesselStr(
         content,
-        /u\/chuyn\s*([^\n]+)/i
-    )];
+        /vessel\s+name\s*\/\s*flag\s*([^\n]+)/i
+    ).replace(/\s*(\(.+?)?voyage\s+number/gi, ' - ')];
 }
 
 export function pol(content) {
     return getPODStr(
         content,
-        /cng\s+xp\s+h\+ng\s*:\s*([^\n]+)/i
-    );
+        /port\s+of\s+loading\s*([^\n]+)/i
+    ).replace(/\s*est.+/gi, '')
 }
 
 export function pod(content) {
     return getPODStr(
         content,
-        /cng\s+n\s+([^\n]+)/i 
-    );
+        /port\s+of\s+discharge\s*([^\n]+)/i
+    ).replace(/\s*est.+/gi, '');
 }
 
-const date_time = /(\d{2}-[a-z]{3}-\d{2,4}(\s+\d{2}:\d[^\n]*)?)/i
+const date_time = /(\d{2}\/\d{2}\/\d{4}(\s+\d{2}:\d[^\n]*)?)/i
 
 export function closing_time(content) {
-    return getDatePrefix(
-        content,
-        /cy\/vgm\s+cut\s+off\s+time\s*:\s*/i,
-        date_time
-    );
+    const lines = getLines(content, /gate-in\s+at\s+terminal\s*\/\s*depot/i, /shipping\s+instructions\s+cut-off/i);
+    for (let line of lines) {
+        const parts = line.trim().split(/\s{2,}/);
+        if (parts.length >= 2 && /dry/i.test(parts[0])) {
+            const dateStr = parts[parts.length - 1];
+            const match = dateStr.match(date_time);
+            if (match) {
+                return new Date(fixDateStr(match[1]));
+            }
+        }
+    }
 }
 
 export function si_cut_off(content) {
-    const closing_time_date = closing_time(content);
-    let regex = /international\s+te.*?service\s*:\s*([^\n]+)/i;
-    let match = content.match(regex);
-    if (match) {
-        const term_service = match[1].replace(/\s+cy\/vgm[^\n]+/i, '').toLowerCase().trim();
-        const suffix = /.*?([a-z]{3}\s+\d{2}:\d{2})\s*[ap]m\s*\n/i;
-        regex = new RegExp(term_service + suffix.source, 'gi');
-        const dates = [...content.matchAll(regex)].map(item => {
-            const res = item[1].split(/\s+|:/);
-            return getPreviousDate(closing_time_date, [res[1], res[2], res[0]]);
-        });
-        return new Date(Math.max(...dates));;
+    const lines = getLines(content, /others\s+date\s*\/\s*time/i, /msc\s+vietnam\s+company\s+limited/i);
+    for (let line of lines) {
+        const parts = line.trim().split(/\s{2,}/);
+        if (parts.length >= 2 && /shipping\s+instructions\s+cut-off/i.test(parts[0])) {
+            const dateStr = parts[parts.length - 1];
+            const match = dateStr.match(date_time);
+            if (match) {
+                return new Date(fixDateStr(match[1]));
+            }
+        }
     }
-    return '';
 }
 
 export function etd(content) {
-    return getBookingET(
+    let dates = matchFirst(
         content,
-        /ng\+y\s+t\+u\s+ri\s+/i,
-        date_time,
-        'min'
+        /est\.\s*time\s+of\s+arrival\s*\/\s*departure([^\n]+)/i
     );
+    dates = [...dates.matchAll(/(\d{2}\/\d{2}\/\d{4}(\s+\d{2}:\d{2}))/gi)].map(item => {    
+        let dateStr = fixDateStr(item[1]);
+        return new Date(dateStr);
+    });
+    return new Date(Math.max(...dates));
 }
 
 export function eta_origin(content) {
-    return '';
+    return getDatePrefix(
+        content,
+        /est\.\s*time\s+of\s+arrival\s+/i,
+        /(\d{2}\/\d{2}\/\d{4}(\s+\d{2}:\d{2}))/i,
+        fixDateStr
+    );
 }
 
 export function eta(content) {
