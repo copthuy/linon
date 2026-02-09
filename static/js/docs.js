@@ -14,6 +14,7 @@ import * as cow from "./doc/cow.js"; ////
 import * as cyc from "./doc/cyc.js"; //
 import * as dlf from "./doc/dlf.js"; // hgc
 import * as ful from "./doc/ful.js"; ////
+import * as gec from "./doc/gec.js"; ////
 import * as gis from "./doc/gis.js"; ////
 import * as goc from "./doc/goc.js"; // hgc
 import * as hat from "./doc/hat.js"; ////
@@ -64,6 +65,7 @@ const modules = {
 	cyc: cyc,
 	dlf: dlf,
 	ful: ful,
+	gec: gec,
 	gis: gis,
 	goc: goc,
 	hat: hat,
@@ -115,6 +117,7 @@ const factories = {
 	cyc: /CYC\s+IMPORT\s+EXPORT/i, //
 	dlf: /DUC\s+LOI/i, // hgc
 	ful: /FULLWAY\s+COMPANY\s+LIMITED/i, ////
+	gec: /GOLDEN\s+FORTUNE/i, ////
 	gis: /GIAI\s+SAM/i, // hgc
 	goc: /GLORY\s+OCEANIC/i, // hgc
 	hat: /HA\s+THANH/i, ////
