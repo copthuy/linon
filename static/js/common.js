@@ -307,7 +307,7 @@ export function getPreviousDate(etd, targetDateTime) {
 
 export function addExtraDate(etaDate, podStr) {
     let extra = 0;
-    const norfolkPattern = /norfolk/i;
+    const norfolkPattern = /norfolk|savannah/i;
     const losLongPattern = /los|long/i;
 
     if (norfolkPattern.test(podStr)) {
