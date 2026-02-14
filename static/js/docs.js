@@ -30,6 +30,7 @@ import * as hxy from "./doc/hxy.js"; //
 import * as hyf from "./doc/hyf.js"; ////
 import * as jia from "./doc/jia.js";
 import * as lon from "./doc/lon.js";
+import * as man from "./doc/man.js"; ////
 import * as mgc from "./doc/mgc.js";
 import * as nkc from "./doc/nkc.js"; //
 import * as pkp from "./doc/pkp.js"; ////
@@ -81,6 +82,7 @@ const modules = {
 	hyf: hyf,
 	jia: jia,
 	lon: lon,
+	man: man,
 	mgc: mgc,
 	nkc: nkc,
 	pkp: pkp,
@@ -133,6 +135,7 @@ const factories = {
 	hyf: /HONG\s+YI/i, ////
 	jia: /JIA\s+DING\s+INDUSTRY/i,
 	lon: /LONGWIN\s+FURNITURE/i, ////
+	man: /MANGROVE\s+HOME/i, //
 	mgc: /MADE\s+GREEN\s+COMPANY/i, //
 	nkc: /NGHIA\s+KY/i, //
 	pkp: /PHU\s+KHANG\s+PHAT/i, ////
