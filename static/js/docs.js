@@ -17,6 +17,7 @@ import * as ful from "./doc/ful.js"; ////
 import * as gec from "./doc/gec.js"; ////
 import * as gis from "./doc/gis.js"; ////
 import * as goc from "./doc/goc.js"; // hgc
+import * as gyv from "./doc/gyv.js"; ////
 import * as hat from "./doc/hat.js"; ////
 import * as hgc from "./doc/hgc.js"; //
 import * as hgt from "./doc/hgt.js"; //
@@ -69,6 +70,7 @@ const modules = {
 	gec: gec,
 	gis: gis,
 	goc: goc,
+	gyv: gyv,
 	hat: hat,
 	hgc: hgc,
 	hgt: hgt,
@@ -122,6 +124,7 @@ const factories = {
 	gec: /GOLDEN\s+FORTUNE/i, ////
 	gis: /GIAI\s+SAM/i, // hgc
 	goc: /GLORY\s+OCEANIC/i, // hgc
+	gyv: /GUAN\s+YIMING\s+VIET/i, ////
 	hat: /HA\s+THANH/i, ////
 	hgc: /HOANG\s+GIANG/i, //
 	hgt: /HUNG\s+GIA\s+THINH/i, //
@@ -206,9 +209,9 @@ export async function loadDocContent(data) {
 		};
 
 		const parts = file_content.split(/commercial\s+invoice|invoice\s+for\s+export\s+service/i).slice(1);
-		console.log();
-		console.log(parts);
-		console.log();
+		//console.log();
+		//console.log(parts);
+		//console.log();
 		let i = 1;
 		for (const part of parts) {
 			const doc = 'COMMERCIAL INVOICE ' + part;
