@@ -1,42 +1,47 @@
-import { 
-    matchFirst, strToDate
-} from '../common.js';
-
 import * as all from './all.js';
+import * as gyv from './gyv.js';
+
+function isFact(content) {
+    let inv = all.invoice_number(content);
+    return !!inv;
+}
 
 export function invoice_number(content) {
-    return matchFirst(
-        content,
-        /inv\.\s*no\.\s*:\s*(\w+)/i
-    ).replace(/\s+/, '');
+    if (isFact(content)) {
+        return all.invoice_number(content);
+    }
+    return gyv.invoice_number(content);
 }
 
 export function vessel(content) {
-    return matchFirst(
-        content,
-        /vessel\s*:\s*([^\n]+)/i
-    ).replace(/\s+/, '');
+    if (isFact(content)) {
+        return all.vessel(content);
+    }
+    return gyv.vessel(content);
 }
 
 export function etd(content) {
-    return strToDate(matchFirst(
-        content,
-        /etd\s*:\s*([^\n]+)/i
-    )) ?? 'TBA';
+    if (isFact(content)) {
+        return all.etd(content);
+    }
+    return gyv.etd(content);
 }
 
 export function eta(content) {
-    return strToDate(matchFirst(
-        content,
-        /eta\s*:\s*([^\n]+)/i
-    )) ?? 'TBA';
+    if (isFact(content)) {
+        return all.eta(content);
+    }
+    return gyv.eta(content);
 }
 
 export function total(content) {
-    return all.total(content, /total\s*:\s+/i);
+    if (isFact(content)) {
+        return all.total(content);
+    }
+    return gyv.total(content);
 }
 
 export {
     bill_number,
-    cont_number
+    cont_number,
 } from './all.js';
