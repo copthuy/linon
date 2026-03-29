@@ -149,6 +149,33 @@ function Find-Target {
 
 }
 
+function Get-InvoiceField {
+    param (
+        [Parameter(Mandatory = $true)]
+        [object]$WorkSheet,
+
+        [Parameter(Mandatory = $true)]
+        [string]$INV1,
+
+        [Parameter(Mandatory = $true)]
+        [string]$INV2,
+
+        [Parameter(Mandatory = $true)]
+        [object]$CellAnchor
+    )
+
+    # Get the cell reference for INV1 at this row
+    $INV1Cell = Get-Cell -CellRefCol $INV1 -CellRefRow $CellAnchor.Address()
+    $INV1Value = $WorkSheet.Range($INV1Cell).Value()
+
+    # If INV1 is empty, return INV1; otherwise return INV2
+    if ([string]::IsNullOrWhiteSpace($INV1Value)) {
+        return $INV1
+    } else {
+        return $INV2
+    }
+}
+
 function Update-Cell {
     param (
         [Parameter(Mandatory = $true)]

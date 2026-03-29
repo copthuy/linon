@@ -33,15 +33,17 @@ if ($null -ne $WorkBook) {
         Write-Host "WorkSheet:" $WorkSheet.Name -ForegroundColor Green
 
         $BOOKING = Find-Header -WorkSheet $WorkSheet -HeaderStr "BOOKING"
-        $DATE    = "C1"
-        $POL =     Find-Header -WorkSheet $WorkSheet -HeaderStr "POL"
-        $POD =     Find-Header -WorkSheet $WorkSheet -HeaderStr "POD"
-        $ETD =     Find-Header -WorkSheet $WorkSheet -HeaderStr "ETD"
-        $ATD =     Find-Header -WorkSheet $WorkSheet -HeaderStr "ATD"
-        $ETA =     Find-Header -WorkSheet $WorkSheet -HeaderStr "ETA"
-        $CONT =    Find-Header -WorkSheet $WorkSheet -HeaderStr "CONT"
+        $DATE = "C1"
+        $POL = Find-Header -WorkSheet $WorkSheet -HeaderStr "POL"
+        $POD = Find-Header -WorkSheet $WorkSheet -HeaderStr "POD"
+        $ETD = Find-Header -WorkSheet $WorkSheet -HeaderStr "ETD"
+        $ATD = Find-Header -WorkSheet $WorkSheet -HeaderStr "ATD"
+        $ETA = Find-Header -WorkSheet $WorkSheet -HeaderStr "ETA"
+        $CONT = Find-Header -WorkSheet $WorkSheet -HeaderStr "CONT"
         $REMARK1 = Find-Header -WorkSheet $WorkSheet -HeaderStr "REMARK1"
-        $BILL =    Find-Header -WorkSheet $WorkSheet -HeaderStr "BILL"
+        $BILL = Find-Header -WorkSheet $WorkSheet -HeaderStr "BILL"
+        $INV1 = Find-Header -WorkSheet $WorkSheet -HeaderStr "INV1"
+        $INV2 = Find-Header -WorkSheet $WorkSheet -HeaderStr "INV2"
 
         #Write-Host $BOOKING
         #Write-Host $DATE
@@ -122,6 +124,10 @@ if ($null -ne $WorkBook) {
                         [pscustomobject]@{
                             Field = $CONT
                             Value = $item.cont_number
+                        },
+                        [pscustomobject]@{
+                            Field = $INV1
+                            Value = $item.total
                         }
                     )
                 }
@@ -164,9 +170,16 @@ if ($null -ne $WorkBook) {
             #Write-Host $CellAnchor.Address()
             # Update Cells
             foreach ($data in $DataList) {
+                $Field = if ($data.Field -eq $INV1) {
+                    Get-InvoiceField -WorkSheet $WorkSheet -INV1 $INV1 -INV2 $INV2 -CellAnchor $CellAnchor
+                }
+                else {
+                    $data.Field
+                }
+
                 Update-Cell `
                     -WorkSheet $WorkSheet `
-                    -CellRefCol $data.Field `
+                    -CellRefCol $Field `
                     -CellRefRow $CellAnchor.Address() `
                     -Str $data.Value
             }
