@@ -56,6 +56,7 @@ import * as woo from "./doc/woo.js";
 import * as xaw from "./doc/xaw.js"; // hgc
 import * as xgx from "./doc/xgx.js";
 import * as ydc from "./doc/ydc.js";
+import * as yff from "./doc/yff.js";
 import * as zfc from "./doc/zfc.js";
 
 const modules = {
@@ -109,6 +110,7 @@ const modules = {
 	xaw: xaw,
 	xgx: xgx,
 	ydc: ydc,
+	yff: yff,
 	zfc: zfc,
 };
 
@@ -163,6 +165,7 @@ const factories = {
 	xaw: /TUONG\s+AN\s+WOOD/i, // hgc
 	xgx: /XIN\s+GUAN\s+XING/i,
 	ydc: /YING\s+DONG/i,
+	yff: /YUE\s+FENG\s+FURNITURE/i,
 	zfc: /TRUNG\s+DANH/i, ////
 };
 
