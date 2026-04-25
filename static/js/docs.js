@@ -46,6 +46,7 @@ import * as tdv from "./doc/tdv.js"; ////
 import * as tlc from "./doc/tlc.js"; //// nkc
 import * as tlp from "./doc/tlp.js"; //// nkc
 import * as tth from "./doc/tth.js"; ////
+import * as ttp from "./doc/ttp.js"; ////
 import * as uls from "./doc/uls.js"; ////
 import * as unt from "./doc/unt.js"; ////
 import * as vdt from "./doc/vdt.js"; ////
@@ -100,6 +101,7 @@ const modules = {
 	tlc: tlc,
 	tlp: tlp,
 	tth: tth,
+	ttp: ttp,
 	uls: uls,
 	unt: unt,
 	vdt: vdt,
@@ -155,6 +157,7 @@ const factories = {
 	tlc: /THANG\s+LOI/i, //// nkc
 	tlp: /THANH\s+LOC\s+PHAT/i, //// nkc
 	tth: /THANH\s+TRUNG\s+HIEU/i, //// nkc
+	ttp: /THANH\s+THINH\s+PHAT/i, ////
 	uls: /MING\s+ZE/i, ////
 	unt: /UNITY\s+VIET\s+NAM/i, ////
 	vdt: /VINH\s+DAT\s+THANH/i, ////
