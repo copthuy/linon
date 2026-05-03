@@ -10,6 +10,7 @@ import * as all from "./doc/all.js";
 import * as arf from "./doc/arf.js"; ////
 import * as bra from "./doc/bra.js"; ////
 import * as cba from "./doc/cba.js"; ////
+import * as cfs from "./doc/cfs.js"; ////
 import * as cow from "./doc/cow.js"; ////
 import * as cyc from "./doc/cyc.js"; //
 import * as dlf from "./doc/dlf.js"; // hgc
@@ -65,6 +66,7 @@ const modules = {
 	arf: arf,
 	bra: bra,
 	cba: cba,
+	cfs: cfs,
 	cow: cow,
 	cyc: cyc,
 	dlf: dlf,
@@ -121,6 +123,7 @@ const factories = {
 	arf: /ARTISAN\s+FURNITURE/i, ////
 	bra: /BRADSENSE/i, ////
 	cba: /CHANG\s+BAO/i, ////
+	cfs: /FULLWAY\s+COMPANY\s+LIMITED/i, ////
 	cow: /COUNTRY\s+WOOD/i, ////
 	cyc: /CYC\s+IMPORT\s+EXPORT/i, //
 	dlf: /DUC\s+LOI/i, // hgc
